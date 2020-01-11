@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:wx_read_app/common/common_color.dart';
-import 'package:wx_read_app/page/book_page.dart';
+import 'package:wx_read_app/page/story_page.dart';
 import 'package:wx_read_app/page/discover_page.dart';
 import 'package:wx_read_app/page/mine_page.dart';
-import 'package:wx_read_app/page/story_page.dart';
+import 'package:wx_read_app/page/book_page.dart';
 
 /// User: lxqljc
 /// Date: 2020-01-10
@@ -29,6 +30,9 @@ class _MyHomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    //设置状态栏颜色字体
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light
+        .copyWith(statusBarBrightness: Brightness.dark));
     return Scaffold(
         backgroundColor: CommonColor.color01,
         bottomNavigationBar: BottomNavigationBar(

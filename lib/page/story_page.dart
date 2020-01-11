@@ -1,18 +1,18 @@
-
-
 import 'package:flutter/material.dart';
 
 /// User: luoxiaoquan
 /// Date: 2020-01-11
-/// description: 书架页面
-class BookPage extends StatefulWidget {
+/// description: 故事页面
+class StoryPage extends StatefulWidget {
   @override
-  _BookPageState createState() => _BookPageState();
+  _StoryPageState createState() => _StoryPageState();
 }
 
-class _BookPageState extends State<BookPage> {
+class _StoryPageState extends State<StoryPage> {
   @override
   Widget build(BuildContext context) {
-    return Container(color: Colors.green,);
+    return Container(
+      color: Colors.blue,
+    );
   }
 }
