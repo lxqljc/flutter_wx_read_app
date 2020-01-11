@@ -18,7 +18,8 @@ class DiscoverPage extends StatefulWidget {
   _DiscoverPageState createState() => _DiscoverPageState();
 }
 
-class _DiscoverPageState extends State<DiscoverPage> {
+class _DiscoverPageState extends State<DiscoverPage>
+    with AutomaticKeepAliveClientMixin {
   ///发现页列表
   List<dynamic> list = List();
 
@@ -33,6 +34,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
 
   @override
   void initState() {
+    print('DiscoverPage-->initState');
     String jsonStr =
         '[{"type":0,"title":"免费图书馆","desc":"第130期 送30本书，周五更新","books":[{"imageUrl":"https://img1.doubanio.com/view/subject/l/public/s33505898.jpg","price":"原价：69.00","bookName":"了不起的我","author":"陈海贤"},{"imageUrl":"https://img1.doubanio.com/view/subject/l/public/s33505898.jpg","price":"原价：69.00","bookName":"了不起的我","author":"陈海贤"},{"imageUrl":"https://img1.doubanio.com/view/subject/l/public/s33505898.jpg","price":"原价：69.00","bookName":"了不起的我","author":"陈海贤"},{"imageUrl":"https://img1.doubanio.com/view/subject/l/public/s33505898.jpg","price":"原价：69.00","bookName":"了不起的我","author":"陈海贤"},{"imageUrl":"https://img1.doubanio.com/view/subject/l/public/s33505898.jpg","price":"原价：69.00","bookName":"了不起的我","author":"陈海贤"},{"imageUrl":"https://img1.doubanio.com/view/subject/l/public/s33505898.jpg","price":"原价：69.00","bookName":"了不起的我","author":"陈海贤"}],"buttonText":"免费领取"},{"type":1,"title":"为你推荐","desc":"基于你的阅读历史计算，每日更新","books":["https://img1.doubanio.com/view/subject/l/public/s33505898.jpg","https://img1.doubanio.com/view/subject/l/public/s33505898.jpg","https://img1.doubanio.com/view/subject/l/public/s33505898.jpg","https://img1.doubanio.com/view/subject/l/public/s33505898.jpg"],"clickText":"换一批"},{"type":2,"bookName":"六顶思考帽","author":"爱德华·德博诺","imageUrl":"https://img1.doubanio.com/view/subject/l/public/s33505898.jpg","reader":"周杰伦","readerImage":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1578737241768&di=39864bb0f14c02390803d9105c35b445&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201509%2F30%2F20150930175854_w3CsQ.thumb.224_0.jpeg","isLike":false}]';
     list = json.decode(jsonStr);
@@ -40,7 +42,11 @@ class _DiscoverPageState extends State<DiscoverPage> {
   }
 
   @override
+  bool get wantKeepAlive => true;
+
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     return SafeArea(
       child: Column(
         children: <Widget>[

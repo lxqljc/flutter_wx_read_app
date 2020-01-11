@@ -16,11 +16,12 @@ class BookPage extends StatefulWidget {
   _BookPageState createState() => _BookPageState();
 }
 
-class _BookPageState extends State<BookPage> {
+class _BookPageState extends State<BookPage> with AutomaticKeepAliveClientMixin{
   List<BookItem> books = new List();
 
   @override
   void initState() {
+    print('BookPage-->initState');
     String jsonStr =
         '[{"imageUrl":"https://img1.doubanio.com/view/subject/l/public/s33505898.jpg","bookName":"了不起的我"},{"imageUrl":"https://img1.doubanio.com/view/subject/l/public/s33505898.jpg","bookName":"了不起的我"},{"imageUrl":"https://img1.doubanio.com/view/subject/l/public/s33505898.jpg","bookName":"了不起的我"},{"imageUrl":"https://img1.doubanio.com/view/subject/l/public/s33505898.jpg","bookName":"了不起的我"},{"imageUrl":"https://img1.doubanio.com/view/subject/l/public/s33505898.jpg","bookName":"了不起的我"},{"imageUrl":"https://img1.doubanio.com/view/subject/l/public/s33505898.jpg","bookName":"了不起的我"},{"imageUrl":"https://img1.doubanio.com/view/subject/l/public/s33505898.jpg","bookName":"了不起的我"},{"imageUrl":"https://img1.doubanio.com/view/subject/l/public/s33505898.jpg","bookName":"了不起的我"},{"imageUrl":"https://img1.doubanio.com/view/subject/l/public/s33505898.jpg","bookName":"了不起的我"},{"imageUrl":"https://img1.doubanio.com/view/subject/l/public/s33505898.jpg","bookName":"了不起的我"},{"imageUrl":"https://img1.doubanio.com/view/subject/l/public/s33505898.jpg","bookName":"了不起的我"},{"imageUrl":"https://img1.doubanio.com/view/subject/l/public/s33505898.jpg","bookName":"了不起的我"},{"imageUrl":"https://img1.doubanio.com/view/subject/l/public/s33505898.jpg","bookName":"了不起的我"},{"imageUrl":"https://img1.doubanio.com/view/subject/l/public/s33505898.jpg","bookName":"了不起的我"},{"imageUrl":"https://img1.doubanio.com/view/subject/l/public/s33505898.jpg","bookName":"了不起的我"}]';
     List<dynamic> bookItems = json.decode(jsonStr);
@@ -31,7 +32,12 @@ class _BookPageState extends State<BookPage> {
   }
 
   @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
+
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     int crossAxisCount = 3;
     double crossAxisSpacing = 40;
     double mainAxisSpacing = 1;
@@ -44,58 +50,64 @@ class _BookPageState extends State<BookPage> {
       SearchWidget(
         leftText: '搜索书架',
         rightText: '编辑',
-        margin: EdgeInsets.symmetric(horizontal: 20),
-      ),
-      Container(
-        margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-        child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              IconTextWidget(
-                  text: '电脑版',
-                  icon: Icon(
-                    Icons.computer,
-                    size: 15,
-                    color: CommonColor.color8b8b8d,
-                  )),
-              IconTextWidget(
-                  text: '分类显示',
-                  icon: Icon(
-                    Icons.category,
-                    size: 15,
-                    color: CommonColor.color8b8b8d,
-                  ))
-            ]),
+        margin: EdgeInsets.only(left: 20,right: 20,bottom: 20),
       ),
       Expanded(
-        child: Container(
-          margin: EdgeInsets.symmetric(horizontal: 20),
-          child: GridView.builder(
-              itemCount: 15,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: crossAxisCount,
-                  crossAxisSpacing: crossAxisSpacing,
-                  //宽高比
-                  childAspectRatio: 0.5,
-                  mainAxisSpacing: mainAxisSpacing),
-              itemBuilder: (context, index) {
-                return Column(
-                  children: <Widget>[
-                    CachedNetworkImage(
-                      width: itemWidth,
-                      fit: BoxFit.cover,
-                      imageUrl: books[index].imageUrl,
-                      placeholder: (context, url) =>
-                          CircularProgressIndicator(),
-                      errorWidget: (context, url, error) => Icon(Icons.error),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 10),
-                    ),
-                    Text(books[index].bookName)
-                  ],
-                );
-              }),
+        child: CustomScrollView(
+          slivers: <Widget>[
+            SliverToBoxAdapter(
+              child: Container(
+                margin: EdgeInsets.only(left: 20,right: 20,bottom: 20),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      IconTextWidget(
+                          text: '电脑版',
+                          icon: Icon(
+                            Icons.computer,
+                            size: 15,
+                            color: CommonColor.color8b8b8d,
+                          )),
+                      IconTextWidget(
+                          text: '分类显示',
+                          icon: Icon(
+                            Icons.category,
+                            size: 15,
+                            color: CommonColor.color8b8b8d,
+                          ))
+                    ]),
+              ),
+            ),
+            SliverPadding(
+              padding: EdgeInsets.symmetric(horizontal: 25),
+              sliver: SliverGrid(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: crossAxisCount,
+                    crossAxisSpacing: crossAxisSpacing,
+                    //宽高比
+                    childAspectRatio: 0.5,
+                    mainAxisSpacing: mainAxisSpacing),
+                delegate: SliverChildBuilderDelegate((context, index) {
+                  return Column(
+                    children: <Widget>[
+                      CachedNetworkImage(
+                        width: itemWidth,
+                        fit: BoxFit.cover,
+                        imageUrl: books[index].imageUrl,
+                        placeholder: (context, url) =>
+                            CircularProgressIndicator(),
+                        errorWidget: (context, url, error) => Icon(Icons.error),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(top: 10),
+                      ),
+                      Text(books[index].bookName)
+                    ],
+                  );
+                }, childCount: books.length),
+              ),
+            )
+          ],
         ),
       )
     ]));

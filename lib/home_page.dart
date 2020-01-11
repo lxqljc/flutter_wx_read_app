@@ -22,10 +22,20 @@ class _MyHomePageState extends State<HomePage> {
   ///四个页面
   List<Widget> _pageList;
 
+  ///页面控制器
+  PageController _pageController;
+
   @override
   void initState() {
     super.initState();
+    _pageController = PageController();
     _pageList = [DiscoverPage(), BookPage(), StoryPage(), MinePage()];
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
   }
 
   @override
@@ -46,13 +56,22 @@ class _MyHomePageState extends State<HomePage> {
           ],
           //默认选中首页
           currentIndex: _tabIndex,
-          onTap: (index) {
-            setState(() {
-              _tabIndex = index;
-            });
-          },
+          onTap: _bottomNavBarClick,
         ),
-        body: _pageList[_tabIndex]);
+        //用PageView，用来保存页面切换状态,同时支持懒加载。
+        body: PageView(
+          controller: _pageController,
+          physics: NeverScrollableScrollPhysics(),
+          children: _pageList,
+        ));
+  }
+
+  ///切换页面
+  _bottomNavBarClick(int index) {
+    setState(() {
+      _tabIndex = index;
+    });
+    _pageController.jumpToPage(_tabIndex);
   }
 
   ///获取iconText
