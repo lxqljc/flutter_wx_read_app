@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:wx_read_app/common/common_color.dart';
 import 'package:wx_read_app/page/book_page.dart';
 import 'package:wx_read_app/page/discover_page.dart';
 import 'package:wx_read_app/page/mine_page.dart';
@@ -29,8 +30,9 @@ class _MyHomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: CommonColor.color01,
         bottomNavigationBar: BottomNavigationBar(
-          // backgroundColor: Colors.red,
+          backgroundColor: CommonColor.color151517,
           type: BottomNavigationBarType.fixed,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(icon: _getIcon(0), title: _getIconText(0)),
@@ -72,7 +74,7 @@ class _MyHomePageState extends State<HomePage> {
     }
     //当前iconText是否被选中
     bool isActive = (position == _tabIndex);
-    Color color = isActive ? Colors.blue : Color(0xff8b8b8d);
+    Color color = isActive ? Colors.blue : CommonColor.color8b8b8d;
     return Text(
       name,
       style: TextStyle(fontSize: 14, color: color),
@@ -102,7 +104,7 @@ class _MyHomePageState extends State<HomePage> {
     }
     //当前icon是否被选中
     bool isActive = (position == _tabIndex);
-    Color color = isActive ? Colors.blue : Color(0xff8b8b8d);
+    Color color = isActive ? Colors.blue : CommonColor.color8b8b8d;
     return Image.asset(
       name,
       width: 30.0,
