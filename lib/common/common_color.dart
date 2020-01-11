@@ -10,4 +10,6 @@ class CommonColor {
   static const Color color1c1c1e= Color(0xff1c1c1e);
 
   static const Color color01 = Color(0xff010101);
+  static const Color color424242 = Color(0xff424242);
+  static const Color color262626 = Color(0xff262626);
 }
