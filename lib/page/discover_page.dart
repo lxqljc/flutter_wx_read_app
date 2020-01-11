@@ -65,13 +65,13 @@ class _DiscoverPageState extends State<DiscoverPage>
                   ///根据类型加载item
                   if (list[index]['type'] == _itemStyle1) {
                     DiscoverItem1 item0 = DiscoverItem1.fromJson(list[index]);
-                    itemWidget = _buildItem0(item0);
+                    itemWidget = _buildItem1(item0);
                   } else if (list[index]['type'] == _itemStyle2) {
                     DiscoverItem2 item1 = DiscoverItem2.fromJson(list[index]);
-                    itemWidget = _buildItem1(item1);
+                    itemWidget = _buildItem2(item1);
                   } else if (list[index]['type'] == _itemStyle3) {
                     DiscoverItem3 item2 = DiscoverItem3.fromJson(list[index]);
-                    itemWidget = _buildItem2(item2);
+                    itemWidget = _buildItem3(item2);
                   }
                   return Container(
                       child: itemWidget,
@@ -89,7 +89,7 @@ class _DiscoverPageState extends State<DiscoverPage>
   }
 
   ///样式3
-  Widget _buildItem2(DiscoverItem3 item2) {
+  Widget _buildItem3(DiscoverItem3 item2) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
@@ -158,7 +158,7 @@ class _DiscoverPageState extends State<DiscoverPage>
   }
 
   ///样式2
-  Widget _buildItem1(DiscoverItem2 item1) {
+  Widget _buildItem2(DiscoverItem2 item1) {
     int crossAxisCount = 2;
     double mainAxisSpacing = 20;
     double crossAxisSpacing = 20;
@@ -167,7 +167,7 @@ class _DiscoverPageState extends State<DiscoverPage>
     double itemWidth =
         (Screen.width * 0.9 - 20 - 40 - crossAxisSpacing) / crossAxisCount;
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+      margin: EdgeInsets.only(left: 20, right: 20, top: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -218,7 +218,7 @@ class _DiscoverPageState extends State<DiscoverPage>
   }
 
   ///样式1
-  Widget _buildItem0(DiscoverItem1 item) {
+  Widget _buildItem1(DiscoverItem1 item) {
     List<GridData> datas = List();
     List<Books> books = item.books;
     double crossAxisSpacing = 15;
@@ -239,7 +239,7 @@ class _DiscoverPageState extends State<DiscoverPage>
     }
 
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+      margin: EdgeInsets.only(left: 20, right: 20, top: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
