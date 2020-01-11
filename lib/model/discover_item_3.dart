@@ -1,7 +1,7 @@
 /// User: luoxiaoquan
 /// Date: 2020-01-11
 /// description: 发现页面-第三种样式
-class DiscoverItem2 {
+class DiscoverItem3 {
   int type;
   String bookName;
   String author;
@@ -10,7 +10,7 @@ class DiscoverItem2 {
   String readerImage;
   bool isLike;
 
-  DiscoverItem2(
+  DiscoverItem3(
       {this.type,
       this.bookName,
       this.author,
@@ -19,7 +19,7 @@ class DiscoverItem2 {
       this.readerImage,
       this.isLike});
 
-  DiscoverItem2.fromJson(Map<String, dynamic> json) {
+  DiscoverItem3.fromJson(Map<String, dynamic> json) {
     type = json['type'];
     bookName = json['bookName'];
     author = json['author'];

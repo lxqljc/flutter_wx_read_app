@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:wx_read_app/common/common_color.dart';
-import 'package:wx_read_app/model/discover_item0.dart';
-import 'package:wx_read_app/model/discover_item1.dart';
-import 'package:wx_read_app/model/discover_item2.dart';
+import 'package:wx_read_app/model/discover_item_1.dart';
+import 'package:wx_read_app/model/discover_item_2.dart';
+import 'package:wx_read_app/model/discover_item_3.dart';
 import 'package:wx_read_app/utils/screen.dart';
 import 'package:wx_read_app/widget/button_widget.dart';
 import 'package:wx_read_app/widget/grid_view_widget.dart';
@@ -24,13 +24,13 @@ class _DiscoverPageState extends State<DiscoverPage>
   List<dynamic> list = List();
 
   ///item样式1
-  static const _itemStyle0 = 0;
+  static const _itemStyle1 = 0;
 
   ///item样式2
-  static const _itemStyle1 = 1;
+  static const _itemStyle2 = 1;
 
   ///item样式3
-  static const _itemStyle2 = 2;
+  static const _itemStyle3 = 2;
 
   @override
   void initState() {
@@ -63,14 +63,14 @@ class _DiscoverPageState extends State<DiscoverPage>
                   Widget itemWidget;
 
                   ///根据类型加载item
-                  if (list[index]['type'] == _itemStyle0) {
-                    DiscoverItem0 item0 = DiscoverItem0.fromJson(list[index]);
+                  if (list[index]['type'] == _itemStyle1) {
+                    DiscoverItem1 item0 = DiscoverItem1.fromJson(list[index]);
                     itemWidget = _buildItem0(item0);
-                  } else if (list[index]['type'] == _itemStyle1) {
-                    DiscoverItem1 item1 = DiscoverItem1.fromJson(list[index]);
-                    itemWidget = _buildItem1(item1);
                   } else if (list[index]['type'] == _itemStyle2) {
-                    DiscoverItem2 item2 = DiscoverItem2.fromJson(list[index]);
+                    DiscoverItem2 item1 = DiscoverItem2.fromJson(list[index]);
+                    itemWidget = _buildItem1(item1);
+                  } else if (list[index]['type'] == _itemStyle3) {
+                    DiscoverItem3 item2 = DiscoverItem3.fromJson(list[index]);
                     itemWidget = _buildItem2(item2);
                   }
                   return Container(
@@ -89,7 +89,7 @@ class _DiscoverPageState extends State<DiscoverPage>
   }
 
   ///样式3
-  Widget _buildItem2(DiscoverItem2 item2) {
+  Widget _buildItem2(DiscoverItem3 item2) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
@@ -158,7 +158,7 @@ class _DiscoverPageState extends State<DiscoverPage>
   }
 
   ///样式2
-  Widget _buildItem1(DiscoverItem1 item1) {
+  Widget _buildItem1(DiscoverItem2 item1) {
     int crossAxisCount = 2;
     double mainAxisSpacing = 20;
     double crossAxisSpacing = 20;
@@ -218,7 +218,7 @@ class _DiscoverPageState extends State<DiscoverPage>
   }
 
   ///样式1
-  Widget _buildItem0(DiscoverItem0 item) {
+  Widget _buildItem0(DiscoverItem1 item) {
     List<GridData> datas = List();
     List<Books> books = item.books;
     double crossAxisSpacing = 15;

@@ -1,16 +1,16 @@
 /// User: luoxiaoquan
 /// Date: 2020-01-11
 /// description: 发现页面-第二种样式
-class DiscoverItem1 {
+class DiscoverItem2 {
   int type;
   String title;
   String desc;
   List<String> books;
   String clickText;
 
-  DiscoverItem1({this.type, this.title, this.desc, this.books, this.clickText});
+  DiscoverItem2({this.type, this.title, this.desc, this.books, this.clickText});
 
-  DiscoverItem1.fromJson(Map<String, dynamic> json) {
+  DiscoverItem2.fromJson(Map<String, dynamic> json) {
     type = json['type'];
     title = json['title'];
     desc = json['desc'];
