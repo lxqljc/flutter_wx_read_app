@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:wx_read_app/common/common_color.dart';
@@ -21,12 +22,15 @@ class GridViewWidget extends StatelessWidget {
   ///子组件宽高长度比
   final double childAspectRatio;
 
+  final ScrollPhysics physics;
+
   const GridViewWidget(
       {Key key,
       this.datas = const [],
       this.crossAxisCount = 3,
       this.mainAxisSpacing = 0,
       this.crossAxisSpacing = 0,
+      this.physics: const NeverScrollableScrollPhysics(),
       this.childAspectRatio = 1})
       : super(key: key);
 
@@ -35,6 +39,7 @@ class GridViewWidget extends StatelessWidget {
     return GridView.builder(
         itemCount: datas.length,
         shrinkWrap: true,
+        physics: physics,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           ///横轴个数
           crossAxisCount: crossAxisCount,

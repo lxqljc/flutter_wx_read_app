@@ -166,53 +166,59 @@ class _DiscoverPageState extends State<DiscoverPage>
     //计算item宽度 = (屏幕宽度 * viewportFraction - 外层Margin(10+10) - 内部Container-horizontal( 2 * 20) - crossAxisSpacing)/3
     double itemWidth =
         (Screen.width * 0.9 - 20 - 40 - crossAxisSpacing) / crossAxisCount;
-    return Container(
-      margin: EdgeInsets.only(left: 20, right: 20, top: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            item1.title,
-            style: TextStyle(fontSize: 22, color: Colors.white),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 5),
-          ),
-          Text(
-            item1.desc,
-            style: TextStyle(fontSize: 15, color: CommonColor.color8b8b8d),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 30),
-          ),
-          GridView.builder(
-              itemCount: item1.books.length,
-              shrinkWrap: true,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  mainAxisSpacing: mainAxisSpacing,
-                  crossAxisSpacing: crossAxisSpacing,
-                  childAspectRatio: 0.7,
-                  crossAxisCount: crossAxisCount),
-              itemBuilder: (context, index) {
-                return CachedNetworkImage(
-                  width: itemWidth,
-                  fit: BoxFit.cover,
-                  imageUrl: item1.books[index],
-                  placeholder: (context, url) => CircularProgressIndicator(),
-                  errorWidget: (context, url, error) => Icon(Icons.error),
-                );
-              }),
-          Padding(
-            padding: EdgeInsets.only(top: 30),
-          ),
-          Align(
-            alignment: Alignment.center,
-            child: Text(
-              item1.clickText,
-              style: TextStyle(fontSize: 14, color: Colors.blue),
+    return SingleChildScrollView(
+      child: Container(
+        margin: EdgeInsets.only(left: 20, right: 20, top: 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              item1.title,
+              style: TextStyle(fontSize: 22, color: Colors.white),
             ),
-          )
-        ],
+            Padding(
+              padding: EdgeInsets.only(top: 5),
+            ),
+            Text(
+              item1.desc,
+              style: TextStyle(fontSize: 15, color: CommonColor.color8b8b8d),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 30),
+            ),
+            GridView.builder(
+                itemCount: item1.books.length,
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    mainAxisSpacing: mainAxisSpacing,
+                    crossAxisSpacing: crossAxisSpacing,
+                    childAspectRatio: 0.7,
+                    crossAxisCount: crossAxisCount),
+                itemBuilder: (context, index) {
+                  return CachedNetworkImage(
+                    width: itemWidth,
+                    fit: BoxFit.cover,
+                    imageUrl: item1.books[index],
+                    placeholder: (context, url) => CircularProgressIndicator(),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                  );
+                }),
+            Padding(
+              padding: EdgeInsets.only(top: 30),
+            ),
+            Align(
+              alignment: Alignment.center,
+              child: Text(
+                item1.clickText,
+                style: TextStyle(fontSize: 14, color: Colors.blue),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(bottom: 20),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -238,38 +244,43 @@ class _DiscoverPageState extends State<DiscoverPage>
       datas.add(data);
     }
 
-    return Container(
-      margin: EdgeInsets.only(left: 20, right: 20, top: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            item.title,
-            style: TextStyle(fontSize: 22, color: Colors.white),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 5),
-          ),
-          Text(
-            item.desc,
-            style: TextStyle(fontSize: 15, color: CommonColor.color8b8b8d),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 30),
-          ),
-          GridViewWidget(
-            datas: datas,
-            crossAxisCount: 3,
-            crossAxisSpacing: crossAxisSpacing,
-            mainAxisSpacing: mainAxisSpacing,
-            //宽高比
-            childAspectRatio: 0.5,
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 30),
-          ),
-          ButtonWidget(item.buttonText)
-        ],
+    return SingleChildScrollView(
+      child: Container(
+        margin: EdgeInsets.only(left: 20, right: 20, top: 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              item.title,
+              style: TextStyle(fontSize: 22, color: Colors.white),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 5),
+            ),
+            Text(
+              item.desc,
+              style: TextStyle(fontSize: 15, color: CommonColor.color8b8b8d),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 30),
+            ),
+            GridViewWidget(
+              datas: datas,
+              crossAxisCount: 3,
+              crossAxisSpacing: crossAxisSpacing,
+              mainAxisSpacing: mainAxisSpacing,
+              //宽高比
+              childAspectRatio: 0.5,
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 30),
+            ),
+            ButtonWidget(item.buttonText),
+            Padding(
+              padding: EdgeInsets.only(bottom: 20),
+            ),
+          ],
+        ),
       ),
     );
   }
